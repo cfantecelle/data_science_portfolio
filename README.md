@@ -29,7 +29,7 @@ I have a bachelor's degree in Biology from Federal University of Espírito Santo
 
 ## Where to find me:
 
-social tags
+[![Gmail carloshdfc@gmail.com](https://img.shields.io/badge/Gmail-D14836?style=flat&logo=gmail&logoColor=white)](mailto:carloshdfc@gmail.com)
 
 <br>
 
