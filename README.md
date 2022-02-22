@@ -15,11 +15,11 @@
 
 <br>
 
-With experience in Science and Research, especially in the immunology field, I have developed the ability to look at data in a wide perspective, always thinking about the higher picture. With thoroughness and the ability to identify patterns, I have been applying my knowledge into understanding real life problems, mainly related to human health. Recently, I also started developing skill towards analysing and understanding other kinds of data.
+With experience in Science and Research, especially in the immunology field, I have look at data in a wide perspective, always thinking about the higher picture. With thoroughness and the ability to identify patterns, I have been applying my knowledge into understanding real life problems, mainly related to human health. Recently, I also started developing skill towards analysing and understanding other kinds of data.
 
 <br>
 
-I have a bachelor's degree in Biology from Federal University of Espírito Santo (UFES) where I also studied for one year at Queen Mary University of London (QMUL). I also have a Master's Degree in Infectious Diseases from UFES and I am currently doing a PhD in the same area and institution.
+I have a Bachelor's degree in Biology from Federal University of Espírito Santo (UFES) where I also studied for one year at Queen Mary University of London (QMUL). I also have a Master's Degree in Infectious Diseases from UFES and I am currently doing a PhD in the same area and institution.
 
 <br>
 
