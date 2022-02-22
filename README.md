@@ -11,7 +11,7 @@
 ---
 
 # Carlos Henrique Fantecelle
-<sup>*Data Scientist* and *Researcher* at Federal University of Espírito Santo</sup>
+<sup>*Data Scientist* and *Researcher* at Center of Infectious Diseases (Federal University of Espírito Santo)</sup>
 
 <br>
 
