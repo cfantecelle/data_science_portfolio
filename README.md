@@ -30,7 +30,7 @@ I have a Bachelor's degree in Biology from Federal University of Espírito Santo
 ## Where to find me:
 
 [![Gmail](https://img.shields.io/badge/carloshdfc@gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:carloshdfc@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/Carlos_Henrique_Fantecelle-%230077B5.svg?style=flat&logo=linkedin&logoColor=white)](www.linkedin.com/in/carlos-henrique-fantecelle)
+[![LinkedIn](https://img.shields.io/badge/Carlos_Henrique_Fantecelle-%230077B5.svg?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/carlos-henrique-fantecelle)
 [![Medium](https://img.shields.io/badge/@cfantecelle-12100E?style=flat&logo=medium&logoColor=white)](https://medium.com/@cfantecelle)
 
 <br>
