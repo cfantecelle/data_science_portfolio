@@ -35,3 +35,6 @@ I have a Bachelor's degree in Biology from Federal University of Espírito Santo
 
 Scientific research:
 * [Immunosenescence transcriptomic landscape in leishmania infection](https://onlinelibrary.wiley.com/doi/abs/10.1111/imm.13410). ![R](https://img.shields.io/badge/r-%23276DC3.svg?style=flat&logo=r&logoColor=white)
+
+Other Data Science projects:
+* Inside Airbnb (London) [![pt_BR](https://img.shields.io/badge/jupyter-pt_BR-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)]("project_airbnb/airbnb_analysis_pt-br.ipynb")
