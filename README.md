@@ -2,7 +2,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue#:~:text=license,MIT)](https://github.com/cfantecelle/data_science_portfolio/blob/main/LICENSE) 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-pinegreen#:~:text=contributions-,contributions,-welcome)](https://github.com/cfantecelle/data_science_portfolio/issues)
 ![Python](https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54)
-![R](https://img.shields.io/badge/r-%23276DC3.svg?style=flat&logo=r&logoColor=white)
+![R](https://img.shields.io/badge/R-%23276DC3.svg?style=flat&logo=r&logoColor=white)
 
 ---
 
