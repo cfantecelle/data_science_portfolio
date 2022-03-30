@@ -10,7 +10,7 @@ def reformat_large_tick_values(tick_val, pos):
         new_tick_format = '{:}M'.format(val)
     elif tick_val >= 1000:
         val = round(tick_val/1000, 1)
-        new_tick_format = '{:}m'.format(val)
+        new_tick_format = '{:}K'.format(val)
     elif tick_val < 1000:
         new_tick_format = round(tick_val, 1)
     else:
