@@ -29,3 +29,4 @@ def reformat_large_tick_values(tick_val, pos):
             new_tick_format = new_tick_format[0:index_of_decimal] + new_tick_format[index_of_decimal+2:]
             
     return new_tick_format
+
