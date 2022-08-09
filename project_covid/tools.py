@@ -1,3 +1,5 @@
+import pandas as pd
+
 def reformat_large_tick_values(tick_val, pos):
     """
     Turns large tick values (in the billions, millions and thousands) such as 4500 into 4.5K and also appropriately turns 4000 into 4K (no zero after the decimal).
@@ -29,3 +31,22 @@ def reformat_large_tick_values(tick_val, pos):
             new_tick_format = new_tick_format[0:index_of_decimal] + new_tick_format[index_of_decimal+2:]
 
     return new_tick_format
+
+
+def uniqueValuesPerColumn(df):
+    """
+    Takes a dataframe and counts unique values in each
+    categorical column of the dataset.
+    """
+    
+    variables = df.select_dtypes('object').columns.to_list()
+
+    unique_values = []
+
+    for variable in variables:
+        unique_values.append(', '.join(df[variable].unique()))
+    
+    unique_df = pd.DataFrame({'Variable': variables,
+                              'Unique values': unique_values})
+    
+    return(unique_df)
