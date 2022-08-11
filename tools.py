@@ -1,4 +1,35 @@
+############################################################################################################################
+
+########################################
+## Author: Carlos Henrique Fantecelle ##
+########################################
+
+# This module contains useful functions
+# I have built or gathered along. When
+# the latter is the case, I indicated
+# the author in the description of said
+# function.
+
+##################
+## Dependencies ##                                                                                                          
+##################
+
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split, cross_val_score
+from imblearn.under_sampling import RandomUnderSampler
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from lightgbm import LGBMClassifier
+from xgboost import XGBClassifier
+
+############################################################################################################################
 
 def reformat_large_tick_values(tick_val, pos):
     """
@@ -6,6 +37,8 @@ def reformat_large_tick_values(tick_val, pos):
     millions and thousands) such as 4500 into 
     4.5K and also appropriately turns 4000 
     into 4K (no zero after the decimal).
+
+    Author: https://dfrieds.com/
     """
 
     if tick_val >= 1000000000:
@@ -75,6 +108,57 @@ def classifyColumns(df):
             mcat_cols.append(col)
 
     return num_cols, bcat_cols, mcat_cols
+
+
+def crossValClassModels(X, y, scaler, metric):
+    """
+    Makes cross validation data using multiple
+    classification models for a baseline.
+
+    Takes:
+        X = Dataframe of independend variables.
+        y = Series of the target variable.
+        scaler = Scaling method used to 
+                 transform/normalize the data
+        metric = Metric chosen to evaluate models.
+
+    Returns a dataframe with 'metric' results for
+    each predefined model.
+    """
+
+    # List to build results df later
+    model_name = []
+    metric_result = []
+
+    # Converting to arrays
+    X = np.array(X)
+    y = np.array(y)
+
+    # Initiating models
+    lg = LogisticRegression()
+    dtc = DecisionTreeClassifier() 
+    rf = RandomForestClassifier()
+    svm = SVC() # Support Vector Machines
+    sgd = SGDClassifier() # Stochastic Gradient Descent
+    lgbm = LGBMClassifier() # LightGBM
+    xgb = XGBClassifier(use_label_encoder=False, eval_metric="logloss") #XGBoost, parameters to supress warnings
+
+    # Creating list of results
+    models = [lg, dtc, rf, svm, sgd, lgbm, xgb]
+
+    # Looping and evaluating each model
+    for model in models:
+        pipeline = make_pipeline(scaler, model)
+        scores = cross_val_score(pipeline, X, y, scoring = metric)
+        model_name.append(model.__class__.__name__)
+        metric_result.append("{:.4f} (+/- {:.4f})".format(scores.mean(), scores.std()))
+
+
+    metric_name = metric.capitalize()
+    results_df = pd.DataFrame({'Model': model_name,
+                                metric_name: metric_result})
+
+    return(results_df)
 
 
 
