@@ -162,6 +162,62 @@ def crossValClassModels(X, y, scaler, metric):
     return(results_df)
 
 
+def calcChurnKPIs(y_test, y_pred, X_test, value_column):
+    """
+    Function to calculate Churn Rate and Gross MMR Churn Rate.
+    Takes as arguments the y_test and y_pred from final model,
+    the X_test (w/ column names! be careful when using scaler!)
+    and value_column as the name of column with MRR variable.
+    """
+
+    # Creating dict
+    predictions = {'Index': y_test.index.values,
+                   'Amount': X_test[value_column],
+                   'Class': y_test.to_numpy(),
+                   'Model Prediction': y_pred,
+                   'Catch': ""
+                   }
+
+    # Converting to df
+    predictions_df = pd.DataFrame(predictions).reset_index()
+
+    # Looping to identify churners
+    for i in range(predictions_df.shape[0]):
+        if predictions_df.loc[i, 'Class'] == 1:
+            if predictions_df.loc[i, 'Class'] == predictions_df.loc[i, 'Model Prediction']:
+                predictions_df.loc[i,'Catch'] = 'Detected Churn'
+            else:
+                predictions_df.loc[i,'Catch'] = 'Undetected Churn'
+        elif predictions_df.loc[i, 'Class'] == 0 and predictions_df.loc[i, 'Model Prediction'] == 1:
+            predictions_df.loc[i,'Catch'] = 'Detected, not Churn'
+        else:
+            predictions_df.loc[i,'Catch'] = 'Not churn'
+
+    # Extracting information
+    n_customer = len(y_test)
+    n_churn = predictions_df.Catch.value_counts()['Detected Churn'] + predictions_df.Catch.value_counts()['Undetected Churn']
+    n_churn_detected = predictions_df.Catch.value_counts()['Detected Churn']
+    total_mrr = predictions_df.Amount.sum()
+    churn_mrr = predictions_df.loc[predictions_df['Catch'] == 'Detected Churn'].Amount.sum() + predictions_df.loc[predictions_df['Catch'] == 'Undetected Churn'].Amount.sum()
+    churn_mrr_detected = predictions_df.loc[predictions_df['Catch'] == 'Detected Churn'].Amount.sum()
+
+    # Creating kpi dictionary
+    kpis_dict = {'KPI': ['Churn Rate', 'Gross MRR Churn Rate', 'Gross MRR Loss'],
+                 'Real': ["{:.2%}".format(n_churn/n_customer),
+                          "{:.2%}".format(churn_mrr/total_mrr),
+                          "${:,.2f}".format(churn_mrr)],
+                 'Detected': ["{:.2%}".format(n_churn_detected/n_customer),
+                              "{:.2%}".format(churn_mrr_detected/total_mrr),
+                              "${:,.2f}".format(churn_mrr_detected)],
+                 'Difference': ["{:.2%}".format((n_churn/n_customer)-(n_churn_detected/n_customer)),
+                                "{:.2%}".format((churn_mrr/total_mrr)-(churn_mrr_detected/total_mrr)),
+                                "${:,.2f}".format(churn_mrr-churn_mrr_detected)]}
+
+    # Converting to dataframe
+    kpis_df = pd.DataFrame(kpis_dict)
+
+    print("Gross MRR for the period analysed: ${:,.2f}".format(total_mrr))
+    return(kpis_df)
 
 
 
