@@ -73,7 +73,7 @@ def reformat_large_tick_values(tick_val, pos):
 
 def uniqueValuesPerColumn(df):
     """
-    Takes a dataframe and counts unique values in each
+    Takes a dataframe and returns unique values in each
     categorical column of the dataset.
     """
     
