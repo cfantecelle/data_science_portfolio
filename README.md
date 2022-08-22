@@ -11,7 +11,7 @@
 
 <br>
 
-With experience in Science and Research, especially in the immunology field, I look at data from a wide perspective, going from the higher picture to the small details. With thoroughness and the ability to identify patterns, I have been applying my knowledge to understand real-life problems, mainly related to human health. Recently, I also started developing skills analyzing and understanding other kinds of data.
+With experience in Science and Research, especially in the immunology field, I look at data from a wide perspective, going from the higher picture to the small details. With thoroughness and the ability to identify patterns, I have been applying my knowledge to understand real-life problems, mainly related to human health. Recently, I also started developing skills in analyzing and understanding other kinds of data.
 
 <br>
 
