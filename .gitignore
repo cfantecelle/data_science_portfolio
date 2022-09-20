@@ -3,3 +3,5 @@ project_prophet/prophet_model.ipynb
 project_automl/reg_model.ipynb
 project_automl/class_model.ipynb
 project_automl/mlruns
+project_automl/logs.log
+project_automl/catboost_info
