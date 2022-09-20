@@ -2,3 +2,4 @@ project_ccfraud/data
 project_prophet/prophet_model.ipynb
 project_automl/reg_model.ipynb
 project_automl/class_model.ipynb
+project_automl/mlruns
