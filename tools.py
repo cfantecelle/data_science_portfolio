@@ -219,6 +219,62 @@ def calcChurnKPIs(y_test, y_pred, X_test, value_column):
     print("Gross MRR for the period analysed: ${:,.2f}".format(total_mrr))
     return(kpis_df)
 
+# Creating function to calculate classification results
+def calcClassResults(results_df, target_col, pred_col):
+    """
+    Function to calculate classification rates
+    after prediction using a machine learning
+    model.
+    """
+
+    # Creating dict
+    predictions = {'Index': results_df.index.values,
+                   'Class': results_df[target_col],
+                   'Model Prediction': results_df[pred_col],
+                   'Catch': ""
+                   }
+
+    # Converting to df
+    predictions_df = pd.DataFrame(predictions).reset_index()
+
+    # Looping to identify churners
+    for i in range(predictions_df.shape[0]):
+        if predictions_df.loc[i, 'Class'] != 0:
+            if predictions_df.loc[i, 'Class'] == predictions_df.loc[i, 'Model Prediction']:
+                predictions_df.loc[i,'Catch'] = 'True Positive'
+            elif predictions_df.loc[i, 'Model Prediction'] == 0:
+                predictions_df.loc[i,'Catch'] = 'False Negative'
+            else:
+                predictions_df.loc[i,'Catch'] = 'Wrong Positive'
+        elif predictions_df.loc[i, 'Class'] == 0 and predictions_df.loc[i, 'Model Prediction'] != 0:
+            predictions_df.loc[i,'Catch'] = 'False Positive'
+        else:
+            predictions_df.loc[i,'Catch'] = 'True Negative'
+
+    size = predictions_df.shape[0]
+    tp_rate = predictions_df.Catch.value_counts()['True Positive']/size
+    wp_rate = predictions_df.Catch.value_counts()['Wrong Positive']/size
+    fp_rate = predictions_df.Catch.value_counts()['False Positive']/size
+    fn_rate = predictions_df.Catch.value_counts()['False Negative']/size
+    tn_rate = predictions_df.Catch.value_counts()['True Negative']/size
+
+    realp_rate = (predictions_df.Class.value_counts()[1] + predictions_df.Class.value_counts()[2])/size
+    realn_rate = predictions_df.Class.value_counts()[0]/size
+
+    # Creating df dictionary
+    df_dict = {' ': ['Healthy', 'Suspected + Unhealthy'],
+                 'Real': ["{:.2%}".format(realn_rate),
+                          "{:.2%}".format(realp_rate)],
+                 'Correctly Detected': ["{:.2%}".format(tn_rate),
+                              "{:.2%}".format(tp_rate)],
+                 'Difference': ["{:.2%}".format(realn_rate - tn_rate),
+                                "{:.2%}".format(realp_rate - tp_rate)],
+                 'Wrong prediction': ["{:.2%}".format(fp_rate + fn_rate),
+                                      "{:.2%}".format(wp_rate)]}
+
+    # Converting to dataframe
+    summary_df = pd.DataFrame(df_dict)
+    return(summary_df)
 
 
 
