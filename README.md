@@ -41,3 +41,5 @@ Other Data Science projects:
 * Covid-19 (Our World in Data). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_covid/covid19_brazil_analysis.ipynb)
 * Credit card fraud. [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_ccfraud/cc_fraud_analysis.ipynb)
 * Churn Prediction (Telecom). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_churn/churn_prediction.ipynb)
+* Health Insurance Costs (Auto ML with PyCaret). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_automl/autoML_reg.ipynb)
+* Fetal Health Prediction (Auto ML with PyCaret). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_automl/autoML_class.ipynb)
