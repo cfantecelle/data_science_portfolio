@@ -5,3 +5,4 @@ project_automl/class_model.ipynb
 project_automl/mlruns
 project_automl/catboost_info
 project_automl/logs.log
+*/__pycache__/
