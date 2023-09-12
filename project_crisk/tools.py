@@ -285,4 +285,47 @@ def calcClassResults(results_df, target_col, pred_col):
     return(summary_df)
 
 
+# Retrieving geolocalization information using geopy
+import ast
+from geopy.point import Point
+import time
+
+def reverse_geocoding(dataframe, lat_lon_col, geolocator):
+    
+    """
+    Takes a dataframe containing geolocalisation coordinates
+    in the form of "(lat, lon)" in the lat_lon_col (must be string)
+    and parses them into tupples which will be used by geopy's
+    geolocator to return a dataframe containing the full address,
+    the country, the state and the city or town (for those addresses
+    that do not contain a city in it) or village (for those without
+    either city or town).
+    """
+    
+    df = dataframe.copy()
+    
+    df['gl_address'] = ""
+    df['gl_country'] = ""
+    df['gl_state'] = ""
+    df['gl_city_or_town_or_village'] = ""
+    
+    for row in range(0, len(df)):
+
+            geoloc = ast.literal_eval(df.loc[row, lat_lon_col])
+            location = geolocator.reverse(geoloc)
+            address = location.raw['address']
+            df.loc[row, 'gl_address'] = location.raw['display_name']
+            df.loc[row, 'gl_country'] = address.get('country', '')
+            df.loc[row, 'gl_state'] = address.get('state', '')
+
+            if address.get('city', ''):
+                df.loc[row, 'gl_city_or_town_or_village'] = address.get('city', '')
+            elif address.get('town', ''):
+                df.loc[row, 'gl_city_or_town_or_village'] = address.get('town', '')
+            else:
+                df.loc[row, 'gl_city_or_town_or_village'] = address.get('village', '')
+
+            time.sleep(1)
+
+    return df
 
