@@ -30,7 +30,9 @@ from sklearn.svm import SVC
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 
-############################################################################################################################
+##########################################################################################
+
+## Change tick values in matplotlib
 
 def reformat_large_tick_values(tick_val, pos):
     """
@@ -70,6 +72,9 @@ def reformat_large_tick_values(tick_val, pos):
 
     return new_tick_format
 
+##########################################################################################
+
+## Return unique values per column
 
 def uniqueValuesPerColumn(df):
     """
@@ -81,11 +86,19 @@ def uniqueValuesPerColumn(df):
 
     unique_values = []
 
+    n_values = []
+
+    n_nans = []
+
     for variable in variables:
-        unique_values.append(', '.join(df[variable].unique()))
+        unique_values.append(', '.join(df[variable].astype(str).unique()))
+        n_values.append(len(df[variable].astype(str).unique()))
+        n_nans.append(df[variable].isna().sum())
     
     unique_df = pd.DataFrame({'Variable': variables,
-                              'Unique values': unique_values})
+                              'Unique values': unique_values,
+                              'Categories': n_values,
+                              'NaNs': n_nans})
     
     return(unique_df)
 
@@ -110,6 +123,9 @@ def classifyColumns(df):
 
     return num_cols, bcat_cols, mcat_cols
 
+##########################################################################################
+
+## Creating cross validation for classifiers 
 
 def crossValClassModels(X, y, scaler, metric):
     """
@@ -161,6 +177,10 @@ def crossValClassModels(X, y, scaler, metric):
 
     return(results_df)
 
+
+##########################################################################################
+
+# Calculating Churn KPIs
 
 def calcChurnKPIs(y_test, y_pred, X_test, value_column):
     """
@@ -219,7 +239,10 @@ def calcChurnKPIs(y_test, y_pred, X_test, value_column):
     print("Gross MRR for the period analysed: ${:,.2f}".format(total_mrr))
     return(kpis_df)
 
-# Creating function to calculate classification results
+##########################################################################################
+
+## Creating function to calculate classification results
+
 def calcClassResults(results_df, target_col, pred_col):
     """
     Function to calculate classification rates
@@ -276,9 +299,10 @@ def calcClassResults(results_df, target_col, pred_col):
     summary_df = pd.DataFrame(df_dict)
     return(summary_df)
 
+##########################################################################################
 
+## Retrieving geolocalization information using geopy
 
-# Retrieving geolocalization information using geopy
 import ast
 from geopy.point import Point
 import time
@@ -321,3 +345,46 @@ def reverse_geocoding(dataframe, lat_lon_col, geolocator):
             time.sleep(1)
 
     return df
+
+##########################################################################################
+
+## User agent function
+
+import user_agents as ua
+
+def userAgentInfo(df, ua_col):
+
+    """
+    Extracts information from the user_agent column of a dataframe
+    using the python_user_agents library, where df is a dataframe
+    and ua_col is the name of the columns containing user agent
+    information.
+    """
+
+    df_users = df.copy()
+
+    df_users['ua_browser'] = np.nan
+    df_users['ua_os'] = np.nan
+    df_users['ua_device'] = np.nan
+    df_users['ua_device_brand'] = np.nan
+
+    df_users['ua_is_mobile'] = np.nan
+    df_users['ua_is_tablet'] = np.nan
+    df_users['ua_is_pc'] = np.nan
+
+    for row in df_users.index:
+
+        user_agent = ua.parse(df_users.loc[row, ua_col])
+        
+        df_users.loc[row, 'ua_browser'] = user_agent.browser.family
+        df_users.loc[row, 'ua_os'] = user_agent.os.family
+        df_users.loc[row, 'ua_device'] = user_agent.device.family
+        df_users.loc[row, 'ua_device_brand'] = user_agent.device.brand
+
+        df_users.loc[row, 'ua_is_mobile'] = user_agent.is_mobile
+        df_users.loc[row, 'ua_is_tablet'] = user_agent.is_tablet
+        df_users.loc[row, 'ua_is_pc'] = user_agent.is_pc
+
+    return df_users
+
+    
