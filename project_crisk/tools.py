@@ -82,7 +82,7 @@ def uniqueValuesPerColumn(df):
     categorical column of the dataset.
     """
     
-    variables = df.select_dtypes('object').columns.to_list()
+    variables = df.columns.to_list()
 
     unique_values = []
 
