@@ -156,14 +156,17 @@ def crossValClassModels(X, y, scaler, metric, run_svm = True):
     lg = LogisticRegression()
     dtc = DecisionTreeClassifier() 
     rf = RandomForestClassifier()
-    if run_svm:
-        svm = SVC(cache_size=7000) # Support Vector Machines
+    svm = SVC(cache_size=7000) # Support Vector Machines
     sgd = SGDClassifier() # Stochastic Gradient Descent
     lgbm = LGBMClassifier() # LightGBM
     xgb = XGBClassifier(eval_metric="logloss") #XGBoost, parameters to supress warnings
 
     # Creating list of results
-    models = [lg, sgd, lgbm, xgb, dtc, rf, svm]
+    if run_svm:
+        models = [lg, sgd, lgbm, xgb, dtc, rf, svm]
+    else:
+        models = [lg, sgd, lgbm, xgb, dtc, rf]
+    
     elapsed_time = []
 
     # Looping and evaluating each model
