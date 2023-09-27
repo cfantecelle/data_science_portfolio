@@ -158,7 +158,7 @@ def crossValClassModels(X, y, scaler, metric):
     svm = SVC() # Support Vector Machines
     sgd = SGDClassifier() # Stochastic Gradient Descent
     lgbm = LGBMClassifier() # LightGBM
-    xgb = XGBClassifier(use_label_encoder=False, eval_metric="logloss") #XGBoost, parameters to supress warnings
+    xgb = XGBClassifier(eval_metric="logloss") #XGBoost, parameters to supress warnings
 
     # Creating list of results
     models = [lg, dtc, rf, svm, sgd, lgbm, xgb]
@@ -386,3 +386,4 @@ def userAgentInfo(df, ua_col):
         df_users.loc[row, 'ua_is_pc'] = user_agent.is_pc
 
     return df_users
+    
