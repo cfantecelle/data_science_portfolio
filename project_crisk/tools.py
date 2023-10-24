@@ -25,7 +25,7 @@ from imblearn.under_sampling import RandomUnderSampler
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.svm import SVC
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
@@ -156,6 +156,7 @@ def crossValClassModels(X, y, scaler, metric, run_svm = True):
     lg = LogisticRegression()
     dtc = DecisionTreeClassifier() 
     rf = RandomForestClassifier()
+    gbc = GradientBoostingClassifier()
     svm = SVC() # Support Vector Machines
     sgd = SGDClassifier() # Stochastic Gradient Descent
     lgbm = LGBMClassifier() # LightGBM
@@ -163,9 +164,9 @@ def crossValClassModels(X, y, scaler, metric, run_svm = True):
 
     # Creating list of results
     if run_svm:
-        models = [lg, sgd, lgbm, xgb, dtc, rf, svm]
+        models = [lg, sgd, lgbm, xgb, dtc, rf, gbc, svm]
     else:
-        models = [lg, sgd, lgbm, xgb, dtc, rf]
+        models = [lg, sgd, lgbm, xgb, dtc, rf, gbc]
     
     elapsed_time = []
 
