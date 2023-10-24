@@ -25,7 +25,7 @@ from imblearn.under_sampling import RandomUnderSampler
 from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.svm import SVC
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
@@ -127,7 +127,7 @@ def classifyColumns(df):
 
 ## Creating cross validation for classifiers 
 
-def crossValClassModels(X, y, scaler, metric):
+def crossValClassModels(X, y, scaler, metric, run_svm = True):
     """
     Makes cross validation data using multiple
     classification models for a baseline.
@@ -138,6 +138,7 @@ def crossValClassModels(X, y, scaler, metric):
         scaler = Scaling method used to 
                  transform/normalize the data
         metric = Metric chosen to evaluate models.
+        run_svm = Wether to run SVM.
 
     Returns a dataframe with 'metric' results for
     each predefined model.
@@ -155,25 +156,35 @@ def crossValClassModels(X, y, scaler, metric):
     lg = LogisticRegression()
     dtc = DecisionTreeClassifier() 
     rf = RandomForestClassifier()
+    gbc = GradientBoostingClassifier()
     svm = SVC() # Support Vector Machines
     sgd = SGDClassifier() # Stochastic Gradient Descent
     lgbm = LGBMClassifier() # LightGBM
     xgb = XGBClassifier(eval_metric="logloss") #XGBoost, parameters to supress warnings
 
     # Creating list of results
-    models = [lg, dtc, rf, svm, sgd, lgbm, xgb]
+    if run_svm:
+        models = [lg, sgd, lgbm, xgb, dtc, rf, gbc, svm]
+    else:
+        models = [lg, sgd, lgbm, xgb, dtc, rf, gbc]
+    
+    elapsed_time = []
 
     # Looping and evaluating each model
     for model in models:
+        start_time = datetime.now()
         pipeline = make_pipeline(scaler, model)
         scores = cross_val_score(pipeline, X, y, scoring = metric)
         model_name.append(model.__class__.__name__)
         metric_result.append("{:.4f} (+/- {:.4f})".format(scores.mean(), scores.std()))
+        elapsed_time.append((datetime.now()-start_time).total_seconds())
+        
 
 
     metric_name = metric.capitalize()
     results_df = pd.DataFrame({'Model': model_name,
-                                metric_name: metric_result})
+                                metric_name: metric_result,
+                                'Elapsed Time': elapsed_time})
 
     return(results_df)
 
@@ -386,4 +397,3 @@ def userAgentInfo(df, ua_col):
         df_users.loc[row, 'ua_is_pc'] = user_agent.is_pc
 
     return df_users
-    
