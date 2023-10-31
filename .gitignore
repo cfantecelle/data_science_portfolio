@@ -6,3 +6,4 @@ project_automl/mlruns
 project_automl/catboost_info
 project_automl/logs.log
 */__pycache__/
+project_deploy/data/model.joblib

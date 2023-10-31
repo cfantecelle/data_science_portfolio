@@ -32,9 +32,8 @@ class PropertyValue(Resource):
         return jsonify({'Property Value Prediction: ': float(predict)})
     
 
-api.add_resource(PropetyValue, '/')
+api.add_resource(PropertyValue, '/')
 
 
 if __name__ == '__main__':
     app.run()
-    
