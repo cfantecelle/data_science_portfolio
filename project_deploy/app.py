@@ -17,7 +17,7 @@ app = Flask(__name__)
 api = Api(app)
 
 # Loading model
-model = load("data/model/model.joblib")
+model = load("project_deploy/data/model/model.joblib")
 
 # Creating class for API
 class PropertyValue(Resource):
