@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Add bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container", id="div-header">
+        <h1>São Paulo Apartment Price Prediction</h1>
+        <p>Hello there! :) <br>
+        This is an application to infer Apartment sale or rent prices in São Paulo - BR, by using machine learning. Simply enter your desired parameters to look for an apartment and predict the possible price of sale/rent. This app uses a dataset that covers apartment prices until 2019, so bear that in mind.
+        </p>
+    </div>
+
+    <br><br>
+    
+    <div class="container", id="div-form">
+        <form id="predictionForm">
+            <label for="input1">Parameter 1:</label>
+            <input type="text" id="input1" name="input1" required>
+    
+            <!-- Add more input fields as needed -->
+            <br><br>
+            <button type="button" class="btn btn-outline-primary" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
