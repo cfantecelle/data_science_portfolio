@@ -45,3 +45,4 @@ Other Data Science projects:
 * Fetal Health Prediction (Auto ML with PyCaret). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_automl/autoML_class.ipynb)
 * Demand Forecast (Time Series forecasting with Prophet). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_prophet/prophet_demand.ipynb)
 * Credit Risk Analysis (Prediction of Default). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_crisk/credit_risk.ipynb)
+* Fake News Classifier (Deep Learning). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_fakenews/fakenews_class.ipynb)
