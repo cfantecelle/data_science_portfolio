@@ -31,12 +31,16 @@ I have a Bachelor's degree in Biological Sciences from the Federal University of
 
 <br>
 
-## Projects
+## Scientific Research
 
-Scientific research:
+Transcriptomics:
+
 * [Immunosenescence transcriptomic landscape in Leishmania infection](https://onlinelibrary.wiley.com/doi/abs/10.1111/imm.13410). ![R](https://img.shields.io/badge/R-%23276DC3.svg?style=flat&logo=r&logoColor=white)
 
-Other Data Science projects:
+## Projects
+
+Data Science:
+
 * Inside Airbnb (London). [![Brazilian Portuguese](https://img.shields.io/badge/jupyter-Brazilian_Portuguese-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_airbnb/airbnb_analysis_pt-br.ipynb)
 * Covid-19 (Our World in Data). [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_covid/covid19_brazil_analysis.ipynb)
 * Credit card fraud. [![English](https://img.shields.io/badge/jupyter-English-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_ccfraud/cc_fraud_analysis.ipynb)
