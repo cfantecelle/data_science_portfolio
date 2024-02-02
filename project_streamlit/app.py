@@ -41,6 +41,7 @@ param_lon = st.sidebar.number_input("Approximate longitude:", value=mean_latlon.
 param_condo = st.sidebar.number_input("Condo price", min_value=np.float64(0))
 param_size = st.sidebar.number_input("Size m²:", min_value=0)
 param_toilets = st.sidebar.number_input("Number of toilets:", min_value=0)
+param_rooms = st.sidebar.number_input("Number of rooms:", min_value=1)
 param_suites = st.sidebar.number_input("Number of suites:", min_value=0)
 param_park = st.sidebar.number_input("Number of parking spaces:", min_value=0)
 param_elev = st.sidebar.number_input("Number of elevators:", min_value=0)
@@ -68,6 +69,7 @@ if update_button:
     # Updating dict with selected values
     args_dict.update({"Condo": param_condo,
                       "Size": param_size,
+                      "Rooms": param_rooms,
                       "Toilets": param_toilets,
                       "Suites": param_suites,
                       "Parking": param_park,
