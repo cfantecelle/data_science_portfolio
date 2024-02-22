@@ -39,6 +39,8 @@ Transcriptomics:
 
 ## Projects
 
+<sup>Obs: To view a project, click on the badge right next to it.</sup>
+
 Data Science:
 
 * Inside Airbnb (London). [![Brazilian Portuguese](https://img.shields.io/badge/jupyter-Brazilian_Portuguese-grey?style=flat&logo=jupyter&logoColor=white&labelColor=ef1b0e)](project_airbnb/airbnb_analysis_pt-br.ipynb)
